@@ -1,10 +1,12 @@
 #!/bin/sh
 # forked from https://github.com/blended/sketch-collaboration
-# Pull the latest changes from the repo
+
 if [ -z "$1" ]; then
 	echo "syntax: upload.sh [commit message]"
 	exit 1
 fi
+
+# Pull the latest changes from the repo
 git pull
 
 for f in *.sketch
