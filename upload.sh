@@ -1,10 +1,13 @@
 #!/bin/sh
-
+# forked from https://github.com/blended/sketch-collaboration
 # Pull the latest changes from the repo
+if [ -z "$1" ]; then
+	echo "syntax: upload.sh [commit message]"
+	exit 1
+fi
 git pull
 
-files="web-ui-kit-marcosilva web-ui-kit-marcosilva2" # add a new file like this: "file1 file2 file3"
-for f in $files
+for f in *.sketch
 do
   # Copy .sketch to .zip
   cp $f.sketch $f.zip
@@ -19,8 +22,7 @@ do
   git add $f/
 done
 
-git add upload.sh
-git add download.sh
+git add .
 
 # commit and push with a variable
 git commit -m "$1" && git push

@@ -1,17 +1,17 @@
 #!/bin/sh
-
+# forked from https://github.com/blended/sketch-collaboration
 # Pull the latest changes from the repo
+if [ -z "$1" ]; then
+	echo "syntax: download.sh [directory]"
+	exit 1
+fi
 git pull
 
-files="web-ui-kit-marcosilva web-ui-kit-marcosilva2" # add a new file like this: "file1 file2 file3"
-for f in $files
-do
-  # Zip core Sketch data
-  cd $f/ && zip $f.zip -r .
+# Zip core Sketch data
+cd $1/ && zip $1.zip -r .
 
-  # Copy .zip to .sketch
-  cp $f.zip ../$f.sketch
+# Copy .zip to .sketch
+cp $1.zip ../$1.sketch
 
-  # Remove zip
-  rm -Rf $f.zip && cd ..
-done
+# Remove zip
+rm -Rf $1.zip && cd ..
